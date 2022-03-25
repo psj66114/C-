@@ -1,0 +1,49 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	char name[12];
+	cout << "당신의 이름은 무엇입니까?\n";
+	cin.getline(name, 10, '\n');
+	cout << "반갑습니다." <<name<<"님\n\n";
+
+	cout << "------swing 30------\n";
+	cout << "음료의 가격 입력을 시작합니다.\n\n";
+	int coke=0;
+	int water=0;
+	int fanta=0;
+
+	cout << "콜라의 가격 : ";
+	cin >>coke;
+	cout << "삼다수의 가격 : ";
+	cin >> water;
+	cout << "환타의 가격 : ";
+	cin >> fanta;
+	cout << endl;
+
+
+	cout << "개수를 입력해주세요.\n\n";
+
+	int cokeN = 0;
+	int waterN = 0;
+	int fantaN = 0;
+
+	cout << "콜라 수량 : ";
+	cin >> cokeN;
+	cout << "삼다수 수량 : ";
+	cin >> waterN;
+	cout << "환타 수량 : ";
+	cin >> fantaN;
+
+	cout << "------swing 30------" << endl ;
+
+	int result = 0;
+	result = coke * cokeN + water * waterN + fanta * fantaN;
+	result = result - 500;
+
+	cout << "500원을 할인받아 총" << result << "원 입니다.";
+
+	return 0;
+
+}
