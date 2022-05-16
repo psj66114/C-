@@ -1,0 +1,47 @@
+
+#include <iostream>
+using namespace std;;
+
+class Box {
+public:
+	char s;
+	int w, h;
+	Box(int a, int b, char c = '*') {  //생성자 설정. 문자의 값을 디폴트 *로 설정했다
+		w = a;
+		h = b;
+		s = c;
+	}
+
+public:
+	void setFill(char f) {
+		if (f != s)
+			s = f;
+	}
+	void setSize(int a, int b) {
+		w = a;
+		h = b;
+	}
+	void draw() {
+		for (int i = 0;i < h;i++) {
+			for (int k = 0;k < w;k++) {
+				cout << s;
+			}
+			cout << endl;
+		}
+	}
+};
+
+int main() {
+
+	Box box1(0,0);  //box1. (3.4) *로 채워진 사각형
+	box1.setSize(3, 4);
+	box1.draw();
+
+	cout << endl;
+
+	Box box2(0, 0);   //box2. (6,10) ^로 채워진 사각형.
+	box2.setSize(6, 10);
+	box2.setFill('^');   //기본 사각형 모양을 쓰지 않기 때문에 setFill() 함수 호출
+	box2.draw();
+
+}
