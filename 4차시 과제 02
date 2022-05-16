@@ -1,0 +1,79 @@
+#include <iostream>
+using namespace std;
+#define pi 3.14
+
+class Ladder {  //사다리꼴 클래스
+	int x, y, z, result;
+public:
+	~Ladder() {
+		cout << "Shape 소멸 Ladder 클래스" << endl;
+	}
+public:
+	void AreaLadder1() {  //사다리꼴 함수 1, 사용자 설정 값
+		result = z * (x + y) / 2;
+		cout << "사다리꼴의 넓이는 " << result <<"이다."<< endl;
+	}
+	void AreaLadder2(int a = 3, int b = 4, int c = 7) {  //사다리꼴 함수 2, 디폴트 값
+		result = c * (a + b) / 2;
+		cout << "사다리꼴의 넓이는 " << result << "이다." << endl;
+	}
+
+	void setLadder(int up, int down, int h) {  //사다리꼴 값 설정
+		x = up;
+		y = down;
+		z = h;
+	}
+	
+
+};
+
+class Oval {  //타원 클래스
+	int x, y, result;
+public:
+	~Oval() {
+		cout << "Shape 소멸 Oval 클래스" << endl;
+	}
+public:
+	void AreaOval() {
+		result = pi * x * y;
+		cout << "타원의 넓이는 " << result << "이다." << endl;
+	}
+	void setOval(int w, int h) {  //타원 값 설정
+		x = w;
+		y = h;
+	}
+};
+
+class Rect {
+	int x, y, result;
+public:
+	~Rect() {
+		cout << "Shape 소멸 Rect 클래스" << endl;
+	}
+public:
+	void AreaRect() {
+		result = x * y;
+		cout << "사각형의 넓이는 " << result << "이다." << endl;
+	}
+	void setRect(int w, int h) {  //사각형 값 설정
+		x = w;
+		y = h;
+	}
+};
+
+int main() {
+	Oval ov1;
+	ov1.setOval(3, 4);
+	ov1.AreaOval();
+
+	Rect rect1;
+	rect1.setRect(10, 20);
+	rect1.AreaRect();
+
+
+	Ladder lad1;
+	lad1.AreaLadder2();
+	lad1.setLadder(5, 6, 10);
+	lad1.AreaLadder1();
+
+}
