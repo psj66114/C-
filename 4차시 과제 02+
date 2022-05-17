@@ -1,0 +1,77 @@
+#include <iostream>
+using namespace std;
+#define pi 3.14
+
+class Shape {
+public:
+	string name;
+	int A = 0;
+	int B = 0;
+	int C = 0;
+public:  //생성자 세개
+	
+	Shape (int x, int y) {
+		A = x;
+		B = y;
+	}
+	Shape (int x, int y, int z) {
+		A = x;
+		B = y;
+		C = z;
+	}
+	~Shape() {
+		cout << "Shape 소멸" << name << "클래스" << endl;
+	}
+	
+	//A, B, C 값 리턴 함수
+	int getA() {
+		return A;
+	}
+	int getB() {
+		return B;
+	}
+	int getC() {
+		return C;
+	}
+
+public:
+	void AreaOval() {
+		int result = A * B * pi;
+		cout << "타원의 넓이는 " << result << "이다." << endl;
+		name = "Oval";
+	}
+	void AreaRect() {
+		int result = (A + B) * 2;
+		cout << "사각형의 넓이는 " << result << "이다." << endl;
+		name = "Rextangle";
+	}
+	void AreaLadder(){
+		int result = (A + C) * B / 2;
+		cout << "사다리꼴의 넓이는 " << result << "이다." << endl;
+		name = "Ladder";
+		}
+	void setTwo(int a, int b) {
+		A = a;
+		B = b;
+	}
+	void setThree(int a, int b, int c) {
+		A = a;
+		B = b;
+		C = c;
+	}
+};
+
+int main() {
+
+	Shape oval(3, 4);
+	oval.AreaOval();
+
+	Shape Rectangle(10, 20);
+	Rectangle.AreaRect();
+
+	Shape Ladder(3, 7, 4);
+	Ladder.AreaLadder();
+	Ladder.setThree(5, 10, 6);
+	Ladder.AreaLadder();
+
+}
