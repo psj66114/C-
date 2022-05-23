@@ -36,12 +36,12 @@ public:  //생성자 세개
 
 public:
 	void AreaOval() {
-		int result = A * B * pi;
+		int result = (A * B * pi)/4;  //가로 길이/2*세로 길이/2*3.14
 		cout << "타원의 넓이는 " << result << "이다." << endl;
 		name = "Oval";
 	}
 	void AreaRect() {
-		int result = (A + B) * 2;
+		int result = A * B;
 		cout << "사각형의 넓이는 " << result << "이다." << endl;
 		name = "Rextangle";
 	}
@@ -63,13 +63,15 @@ public:
 
 int main() {
 
-	Shape oval(3, 4);
+	Shape oval(0, 0);
+	oval.setTwo(3, 4);
 	oval.AreaOval();
 
-	Shape Rectangle(10, 20);
+	Shape Rectangle(0, 0);
+	oval.setTwo(10, 20);
 	Rectangle.AreaRect();
 
-	Shape Ladder(3, 7, 4);
+	Shape Ladder(3, 4, 7);
 	Ladder.AreaLadder();
 	Ladder.setThree(5, 10, 6);
 	Ladder.AreaLadder();
