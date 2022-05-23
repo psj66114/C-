@@ -3,27 +3,22 @@ using namespace std;
 #define pi 3.14
 
 class Ladder {  //사다리꼴 클래스
-	int x, y, z, result;
+	int x = 3, y = 7, z = 4, result;
 public:
 	~Ladder() {
 		cout << "Shape 소멸 Ladder 클래스" << endl;
 	}
 public:
-	void AreaLadder1() {  //사다리꼴 함수 1, 사용자 설정 값
-		result = z * (x + y) / 2;
-		cout << "사다리꼴의 넓이는 " << result <<"이다."<< endl;
-	}
-	void AreaLadder2(int a = 3, int b = 4, int c = 7) {  //사다리꼴 함수 2, 디폴트 값
-		result = c * (a + b) / 2;
+	void AreaLadder() {  //사다리꼴 함수 1, 사용자 설정 값
+		result = (x+z)*y / 2;
 		cout << "사다리꼴의 넓이는 " << result << "이다." << endl;
 	}
-
 	void setLadder(int up, int down, int h) {  //사다리꼴 값 설정
 		x = up;
 		y = down;
 		z = h;
 	}
-	
+
 
 };
 
@@ -52,7 +47,7 @@ public:
 	}
 public:
 	void AreaRect() {
-		result = (x + y) * 2;
+		result = x*y;
 		cout << "사각형의 넓이는 " << result << "이다." << endl;
 	}
 	void setRect(int w, int h) {  //사각형 값 설정
@@ -72,8 +67,8 @@ int main() {
 
 
 	Ladder lad1;
-	lad1.AreaLadder2();
+	lad1.AreaLadder();
 	lad1.setLadder(5, 6, 10);
-	lad1.AreaLadder1();
+	lad1.AreaLadder();
 
 }
