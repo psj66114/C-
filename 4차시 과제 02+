@@ -36,7 +36,7 @@ public:  //생성자 세개
 
 public:
 	void AreaOval() {
-		int result = (A * B * pi)/4;  //가로 길이/2*세로 길이/2*3.14
+		int result = A * B * pi;
 		cout << "타원의 넓이는 " << result << "이다." << endl;
 		name = "Oval";
 	}
