@@ -1,0 +1,245 @@
+#include <iostream>
+using namespace std;
+#include <string.h>
+#define SIZE 5
+
+class Member {  //로그인.회원가입 클래스
+public:
+	string name[SIZE];
+	string id[SIZE];
+	string password[SIZE];
+
+public:
+	string getName(int a) {
+		return name[a];
+	}
+	string getId(int a) {
+		return id[a];
+	}
+	string getPassword(int a) {
+		return password[a];
+	}
+	void setName() {  //회원가입 시 이름 입력 함수
+		cout << "이름: ";
+		for (int i = 0;i < SIZE;i++) {
+			if (name[i] == " ") {
+				cin >> name[i];
+				break;
+			}
+			else
+				continue;
+		}
+	}
+	void setId() {  //회원가입 시 아이디 입력 함수
+		cout << "아이디: ";
+		for (int i = 0;i < SIZE;i++) {
+			if (id[i] == " ") {
+				cin >> id[i];
+				break;
+			}
+			else
+				continue;
+		}
+	}
+	void setPassword() {  //회원가입 시 비밀번호 입력 함수
+		cout << "비밀번호: ";
+		for (int i = 0;i < SIZE;i++) {
+			if (password[i] == " ") {
+				cin >> password[i];
+				break;
+			}
+			else
+				continue;
+		}
+	}	
+};
+
+class Cart {  //수강신청 화면 클래스
+public:
+	int menu[4] = { 1,2,3,4 };
+	string menuName[4] = { "장바구니","강의담기","수강신청 확인", "로그아웃" };
+	string subjects[3] = { "C++ 프로그래밍","linux 프로그래밍","리버싱" };  //사용자에게 보여질 목록
+	string subNumber[3] = { "0001", "0002", "0003" };  //현재 과목 목록의 학수번호를 저장하는 배열
+	string selects[3] = {" "," "," "};  //학생이 선택하는 과목을 저장하는 배열. 초기 값은 비어있음.
+
+public:
+	void Menu();
+	void list();
+	void bag_course();
+	void put_bag();
+	void end();
+
+};
+void Cart::Menu() {
+	int menuS = 0;
+	Cart nm;
+	nm.menu;
+	while (1) {
+		cout << "=========================" << endl;
+		for (int i = 0;i < 4;i++) {
+			cout << menu[i] << ". " << menuName[i] << endl;
+		}
+		cout << "번호를 입력하세요: ";
+		cin >> menuS;
+		cout << endl;
+		switch (menuS) {
+		case 1:
+			list();
+			break;
+		case 2:
+			bag_course();
+			break;
+		case 3:
+			put_bag();
+			break;
+		case 4:
+			end();
+			return;
+			break;
+		}
+	}
+		
+}
+void Cart::list() {  //1. 장바구니
+	Cart li;
+	li.subjects;
+	li.subNumber;
+	cout << "========== 강의목록 ==========" << endl;
+	for (int i = 0;i < 3;i++) {
+		cout << "[" << i + 1 << "]" << subjects[i] << " >> " << subNumber[i] << endl;
+	}
+}
+void Cart::bag_course() {  //2. 강의 담기
+	Cart bg;
+	bg.subNumber;
+	bg.subjects;
+	bg.selects;
+	string input;
+	int i = 0;
+	cout << "추가할 학수 번호 >> ";
+	cin >> input;
+
+	if (input != subNumber[0] && input != subNumber[1] && input != subNumber[2]) {
+		return;
+	}
+
+	for (i = 0; i < 3; i++) {
+		if (input == subNumber[i]) {  //내가 선택한 학수번호가 과목 번호 목록에 존재할 때 과목번호 배열의 인덱스를 고정
+			break;
+		}
+	}
+	for (int k = 0; k < 3; k++) {
+		if (selects[k] == subjects[i])  //중복 선택 했다면 반복문을 빠져나가라
+			break;
+		else if (selects[k] == " ") {  //내가 선택한 과목 목록 중 제일 처음 만나는 비어있는 곳에
+			selects[k] = subjects[i];
+			break;
+		}
+	}
+	cout << endl;
+	
+}  //고른 과목이 선택 배열에 들어가도록 코드를 짜야한다.. 고민해보셈
+void Cart:: put_bag() {  //3. 수강신청 확인
+	Cart pb;
+	pb.selects;
+	cout << "======== My 장바구니 ========" << endl;
+	for (int i = 0;i < 3;i++) {
+		cout << i + 1 << ". ";
+		cout << selects[i];
+		cout << endl;
+	}
+	cout << endl;
+}
+void Cart:: end() {
+	cout << "---------- 로그아웃 ----------" << endl;
+	cout << "로그아웃 되었습니다. 안녕히 가세요.";
+}
+
+int main() {
+	int num = 0;
+	Member member;
+	Member* mp;
+	mp = &member;
+
+	Cart cart;
+	Cart* cp;
+	cp = &cart;
+
+	string* ip = new string;
+	string* pwp = new string;
+
+	int CorrectID = 0;
+	int CorrectPW = 0;
+	int i = 0, k = 0;
+
+	for (i = 0; i < SIZE; i++) {  //사용자 정보 초기화
+		mp->name[i] = " ";
+		mp->id[i] = " ";
+		mp->password[i] = " ";
+	}
+
+	while (1) {
+		cout << "---------- 서울여자대학교 종합정보시스템 ----------" << endl;
+		cout << "1. 회원가입" << endl;
+		cout << "2. 로그인" << endl << endl;
+		cout << "번호를 입력하세요 >> ";
+		cin >> num;
+		if (num == 1) {  //회원가입.
+			mp->setName();
+			mp->setId();
+			mp->setPassword();
+			continue;
+		}
+		else if (num == 2) {  //로그인
+
+			cout << "아이디: ";
+			cin >> (*ip);
+			cout << "비밀번호: ";
+			cin >> (*pwp);
+			cout << endl;
+
+			for (k = 0; k < SIZE; k++) {
+				if ((*ip) == mp->getId(k)) {
+					CorrectID = 1;
+					break;  //반복문 실행 중 같은 아이디가 있으면 반복문을 빠져나간다. k 값은 지정된 인덱스 값일 것이고 correctID에 1이 저장된다.
+				}
+			}
+
+			if ((*pwp) == mp->getPassword(k))
+				CorrectPW = 1;
+			else
+				CorrectPW = 0;
+
+			if (CorrectID == 1) {  //입력한 아이디가 존재할 때
+				if (CorrectPW == 1) {
+					cout << "=== 로그인 성공" << endl;
+					cout << mp->getName(k) << "님 환영합니다." << endl;
+					cout << endl;
+					cp->Menu();
+					break;
+				}
+				else {
+					cout << "아이디 혹은 비밀번호가 틀렸습니다." << endl;
+					continue;
+				}
+
+			}
+			else {
+				cout << "아이디 혹은 비밀번호가 틀렸습니다." << endl;
+				continue;
+			}
+
+		}
+		
+		else {
+			cout << "1 또는 2만 입력해주세요." << endl;
+			continue;
+		}
+			
+	}
+
+	delete ip;
+	delete pwp;
+
+	return 0;
+}
